@@ -1,0 +1,33 @@
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%; // ✅ Ensures vertical alignment
+    margin-bottom: 10px;
+  }
+  
+  .expense-item {
+    display: flex;
+    flex-direction: column; // ✅ Stack inputs vertically
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f2f2f2;
+    margin-bottom: 10px;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: flex-end; // ✅ Align delete button to the right
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  

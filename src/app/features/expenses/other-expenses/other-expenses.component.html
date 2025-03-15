@@ -1,0 +1,33 @@
+<mat-card class="form-container">
+    <h2>Other Expenses</h2>
+    <form (ngSubmit)="saveExpenses()">
+      
+      <div *ngFor="let expense of expenses; let i = index" class="expense-item">
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Expense Description</mat-label>
+          <input matInput type="text" [(ngModel)]="expense.description" name="description-{{i}}" required>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Amount</mat-label>
+          <input matInput type="number" [(ngModel)]="expense.amount" name="amount-{{i}}" required>
+        </mat-form-field>
+  
+        <div class="button-row">
+          <button mat-mini-fab color="warn" (click)="removeExpense(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+  
+      </div>
+      
+      <button mat-raised-button color="primary" type="button" (click)="addExpense()">➕ Add Expense</button>
+  
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit">✅ Save Expenses</button>
+        <button mat-raised-button color="warn" type="button" (click)="goBack()">❌ Cancel</button>
+      </div>
+    </form>
+  </mat-card>
+  

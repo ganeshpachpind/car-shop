@@ -41,7 +41,7 @@ export class CarFormComponent {
   constructor(private carService: CarService, private router: Router) {}
 
   addExpense() {
-    this.car.workshopExpenses.push({ description: '', amount: 0 });
+    this.car.workshopExpenses.push({ description: '', amount: 0 , editing:false});
   }
 
   removeExpense(index: number) {

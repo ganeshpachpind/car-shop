@@ -17,14 +17,14 @@ export class CarService {
       sellDate: '2024-05-20',
       sellPrice: 18000,
       workshopExpenses: [
-        { description: 'Oil Change', amount: 100 },
-        { description: 'Brake Pad Replacement', amount: 250 }
+        { description: 'Oil Change', amount: 100 , editing:false},
+        { description: 'Brake Pad Replacement', amount: 250, editing:false }
       ],
       profit: 2900, // Example profit calculation
       payments: [
-        { amount: 5000, date: '2024-03-12' },
-        { amount: 4000, date: '2024-03-15' },
-        { amount: 6000, date: '2024-03-18' } // Total Paid: 15,000 (Full Purchase Price Paid)
+        { amount: 5000, date: '2024-03-12' , editing:false},
+        { amount: 4000, date: '2024-03-15', editing:false},
+        { amount: 6000, date: '2024-03-18', editing:false } // Total Paid: 15,000 (Full Purchase Price Paid)
       ]
     },
     {
@@ -37,12 +37,12 @@ export class CarService {
       sellDate: undefined, // Not sold yet
       sellPrice: undefined,
       workshopExpenses: [
-        { description: 'Tire Replacement', amount: 300 }
+        { description: 'Tire Replacement', amount: 300 , editing:false}
       ],
       profit: undefined, // Not sold yet, so no profit
       payments: [
-        { amount: 7000, date: '2024-04-05' },
-        { amount: 5000, date: '2024-04-10' } // Total Paid: 12,000 (Still Needs 8,000)
+        { amount: 7000, date: '2024-04-05' , editing:false},
+        { amount: 5000, date: '2024-04-10' , editing:false} // Total Paid: 12,000 (Still Needs 8,000)
       ]
     }
   ];

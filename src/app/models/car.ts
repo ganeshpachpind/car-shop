@@ -12,7 +12,7 @@ export interface WorkshopExpense {
     purchasePrice: number;
     sellDate?: string;
     sellPrice?: number;
-    workshopExpenses: { description: string; amount: number }[];
+    workshopExpenses: { description: string; amount: number; editing:boolean }[];
     profit?: number;
-    payments: { amount: number; date: string }[];  // ✅ Ensures payments exist
+    payments: { amount: number; date: string ; editing:boolean }[];  // ✅ Ensures payments exist
 }

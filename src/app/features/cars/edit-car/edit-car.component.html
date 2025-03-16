@@ -1,97 +1,113 @@
 <mat-card class="form-container">
   <h2>Edit Car</h2>
-  <form (ngSubmit)="saveCar()">
-    
-    <div class="form-group">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Car Number</mat-label>
-        <input matInput type="text" [(ngModel)]="car.carNumber" name="carNumber" required>
-      </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Car Model</mat-label>
-        <input matInput type="text" [(ngModel)]="car.carModel" name="carModel" required>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Car Name</mat-label>
-        <input matInput type="text" [(ngModel)]="car.name" name="name" required>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Purchase Date</mat-label>
-        <input matInput type="date" [(ngModel)]="car.purchaseDate" name="purchaseDate" required>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Purchase Price</mat-label>
-        <input matInput type="number" [(ngModel)]="car.purchasePrice" name="purchasePrice" required>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Sell Date (Optional)</mat-label>
-        <input matInput type="date" [(ngModel)]="car.sellDate" name="sellDate">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Sell Price (Optional)</mat-label>
-        <input matInput type="number" [(ngModel)]="car.sellPrice" name="sellPrice">
-      </mat-form-field>
-    </div>
-
-    <!-- Payments Section -->
-    <mat-card class="payment-section">
-      <h3>Payments</h3>
-
-      <div *ngFor="let payment of car.payments; let i = index" class="payment-item">
+  <mat-tab-group class="custom-tabs">
+    <!-- 🔹 Tab 1: Basic Car Details -->
+    <mat-tab label="🚗 Car Details">
+      <form (ngSubmit)="saveCar()" class="form-tab-content">
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Payment Date</mat-label>
-          <input matInput type="date" [(ngModel)]="payment.date" name="payment-date-{{i}}" required>
+          <mat-label>Car Number</mat-label>
+          <input matInput type="text" [(ngModel)]="car.carNumber" name="carNumber" required>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Amount</mat-label>
-          <input matInput type="number" [(ngModel)]="payment.amount" name="payment-amount-{{i}}" required>
+          <mat-label>Car Model</mat-label>
+          <input matInput type="text" [(ngModel)]="car.carModel" name="carModel" required>
         </mat-form-field>
 
-        <button mat-mini-fab color="warn" (click)="removePayment(i)">
-          <mat-icon>delete</mat-icon>
-        </button>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Purchase Date</mat-label>
+          <input matInput type="date" [(ngModel)]="car.purchaseDate" name="purchaseDate" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Purchase Price</mat-label>
+          <input matInput type="number" [(ngModel)]="car.purchasePrice" name="purchasePrice" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Sell Date (Optional)</mat-label>
+          <input matInput type="date" [(ngModel)]="car.sellDate" name="sellDate">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Sell Price (Optional)</mat-label>
+          <input matInput type="number" [(ngModel)]="car.sellPrice" name="sellPrice">
+        </mat-form-field>
+      </form>
+    </mat-tab>
+
+    <!-- 🔹 Tab 2: Payments Section -->
+    <mat-tab label="💰 Payments">
+      <div class="form-tab-content">
+        <h3>Payments</h3>
+
+        <div *ngFor="let payment of car.payments; let i = index" class="payment-item">
+          <div *ngIf="!payment.editing" class="payment-display">
+            <span class="label">Date:</span> <span>{{ payment.date }}</span>
+            <span class="label">Amount:</span> <span>${{ payment.amount }}</span>
+            <button mat-raised-button class="edit-button" (click)="editPayment(i)">✏️ Edit</button>
+            <button mat-raised-button class="delete-button" (click)="removePayment(i)">🗑️ Delete</button>
+          </div>
+
+          <div *ngIf="payment.editing" class="payment-edit">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Payment Date</mat-label>
+              <input matInput type="date" [(ngModel)]="payment.date" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Amount</mat-label>
+              <input matInput type="number" [(ngModel)]="payment.amount" required>
+            </mat-form-field>
+
+            <button mat-raised-button class="save-button" (click)="savePayment(i)">✅ Save</button>
+            <button mat-raised-button class="cancel-button" (click)="cancelEditPayment(i)">❌ Cancel</button>
+          </div>
+        </div>
+
+        <button mat-raised-button class="add-payment-btn" (click)="addPayment()">➕ Add Payment</button>
+        <p class="total-paid">Total Paid: ${{ getTotalPayments() }} / ${{ car.purchasePrice }}</p>
       </div>
+    </mat-tab>
 
-      <button mat-raised-button color="accent" type="button" class="add-payment-btn" (click)="addPayment()">➕ Add Payment</button>
+    <!-- 🔹 Tab 3: Expenses Section -->
+    <mat-tab label="🛠️ Workshop Expenses">
+      <div class="form-tab-content">
+        <h3>Workshop Expenses</h3>
 
-      <p class="total-paid">Total Paid: ${{ getTotalPayments() }} / ${{ car.purchasePrice }}</p>
-      <p class="overpaid-warning" *ngIf="getTotalPayments() > car.purchasePrice">⚠️ Payments exceed purchase price!</p>
-    </mat-card>
-    
+        <div *ngFor="let expense of car.workshopExpenses; let i = index" class="expense-item">
+          <div *ngIf="!expense.editing" class="expense-display">
+            <span class="label">Description:</span> <span>{{ expense.description }}</span>
+            <span class="label">Amount:</span> <span>${{ expense.amount }}</span>
+            <button mat-raised-button class="edit-button" (click)="editExpense(i)">✏️ Edit</button>
+            <button mat-raised-button class="delete-button" (click)="removeExpense(i)">🗑️ Delete</button>
+          </div>
 
-    <!-- Workshop Expenses Section -->
-    <mat-card class="expense-section">
-      <h3>Workshop Expenses</h3>
-      
-      <div *ngFor="let expense of car.workshopExpenses; let i = index" class="expense-item">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Expense Description</mat-label>
-          <input matInput type="text" [(ngModel)]="expense.description" name="description-{{i}}" required>
-        </mat-form-field>
+          <div *ngIf="expense.editing" class="expense-edit">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Expense Description</mat-label>
+              <input matInput type="text" [(ngModel)]="expense.description" required>
+            </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Amount</mat-label>
-          <input matInput type="number" [(ngModel)]="expense.amount" name="amount-{{i}}" required>
-        </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Amount</mat-label>
+              <input matInput type="number" [(ngModel)]="expense.amount" required>
+            </mat-form-field>
 
-        <button mat-mini-fab color="warn" (click)="removeExpense(i)">
-          <mat-icon>delete</mat-icon>
-        </button>
+            <button mat-raised-button class="save-button" (click)="saveExpense(i)">✅ Save</button>
+            <button mat-raised-button class="cancel-button" (click)="cancelEditExpense(i)">❌ Cancel</button>
+          </div>
+        </div>
+
+        <button mat-raised-button class="add-expense-btn" (click)="addExpense()">➕ Add Expense</button>
       </div>
+    </mat-tab>
+  </mat-tab-group>
 
-      <button mat-raised-button color="accent" type="button" class="add-expense-btn" (click)="addExpense()">➕ Add Expense</button>
-    </mat-card>
-
-    <div class="button-group">
-      <button mat-raised-button class="save-button" type="submit">✅ Save Changes</button>
-      <button mat-raised-button class="cancel-button" type="button" (click)="cancel()">❌ Cancel</button>
-    </div>
-  </form>
+  <!-- Save and Cancel Buttons -->
+  <div class="button-group">
+    <button mat-raised-button class="save-button" type="submit" (click)="saveCar()">✅ Save Changes</button>
+    <button mat-raised-button class="cancel-button" type="button" (click)="cancel()">❌ Cancel</button>
+  </div>
 </mat-card>

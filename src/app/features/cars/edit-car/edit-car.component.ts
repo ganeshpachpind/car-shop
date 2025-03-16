@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-edit-car',
@@ -24,7 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ]
 })
 export class EditCarComponent {
@@ -38,35 +40,58 @@ export class EditCarComponent {
       this.car = cars.find(c => c.id === carId) || {} as Car;
 
       if (!this.car.workshopExpenses) {
-        this.car.workshopExpenses = []; // ✅ Ensure expenses array is initialized
+        this.car.workshopExpenses = [];
       }
 
       if (!this.car.payments) {
-        this.car.payments = []; // ✅ Ensure payments array is initialized
+        this.car.payments = [];
       }
     });
   }
 
-  // ✅ Add Workshop Expense
+  // ✅ Expense Handling
   addExpense() {
-    this.car.workshopExpenses.push({ description: '', amount: 0 });
+    this.car.workshopExpenses.push({ description: '', amount: 0, editing: true });
+  }
+
+  editExpense(index: number) {
+    this.car.workshopExpenses[index].editing = true;
+  }
+
+  saveExpense(index: number) {
+    this.car.workshopExpenses[index].editing = false;
+  }
+
+  cancelEditExpense(index: number) {
+    this.car.workshopExpenses[index].editing = false;
   }
 
   removeExpense(index: number) {
     this.car.workshopExpenses.splice(index, 1);
   }
 
-  // ✅ Add Payment (Ensures total payments do not exceed purchasePrice)
+  // ✅ Payment Handling
   addPayment() {
-    if (this.getTotalPayments() >= this.car.purchasePrice) return;
-    this.car.payments.push({ amount: 0, date: '' });
+    this.car.payments.push({ amount: 0, date: '', editing: true });
+  }
+
+  editPayment(index: number) {
+    this.car.payments[index].editing = true;
+  }
+
+  savePayment(index: number) {
+    this.car.payments[index].editing = false;
+  }
+
+  cancelEditPayment(index: number) {
+    this.car.payments[index].editing = false;
   }
 
   removePayment(index: number) {
     this.car.payments.splice(index, 1);
   }
 
-  // ✅ Get Total Payments Sum
+  // ✅ Calculate Total Payments
   getTotalPayments(): number {
     return this.car.payments.reduce((sum, payment) => sum + (payment.amount || 0), 0);
   }

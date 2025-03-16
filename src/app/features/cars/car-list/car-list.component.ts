@@ -28,17 +28,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 export class CarListComponent {
   cars: Car[] = [];
-  displayedColumns: string[] = [
-    'carNumber',
-    'carModel',
-    'name',
-    'purchasePrice',
-    'expenses',  // ✅ Ensure this is here for collapsible expenses
-    'sellPrice',
-    'profit',
-    'actions'
-  ];
-
   constructor(private carService: CarService, private router: Router) {}
 
   ngOnInit() {

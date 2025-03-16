@@ -30,9 +30,10 @@ export class CarListComponent {
     'carNumber',
     'carModel',
     'name',
-    'purchaseDate',
     'purchasePrice',
     'expenses',  // ✅ Ensure this is here for collapsible expenses
+    'sellPrice',
+    'profit',
     'actions'
   ];
 
@@ -40,9 +41,17 @@ export class CarListComponent {
 
   ngOnInit() {
     this.carService.cars$.subscribe(data => {
-      this.cars = data;
-      console.log("Loaded Cars:", this.cars); // ✅ Debugging Step
+      this.cars = data.map(car => ({
+        ...car,
+        profit: this.calculateProfit(car)
+      }));
     });
+  }
+
+  calculateProfit(car: any): number {
+    if (!car.sellPrice) return 0; // If the car is not sold, profit is 0
+    const totalExpenses = car.workshopExpenses.reduce((sum: number, expense: any) => sum + expense.amount, 0);
+    return car.sellPrice - car.purchasePrice - totalExpenses;
   }
 
   navigateToAddCar() {

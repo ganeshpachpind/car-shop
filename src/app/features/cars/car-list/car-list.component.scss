@@ -2,6 +2,11 @@
   width: 100%;
 }
 
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
 .button-group {
   display: flex;
   justify-content: space-between;
@@ -22,6 +27,7 @@ table {
 
 .mat-cell, .mat-header-cell {
   padding: 12px;
+  text-align: center;
 }
 
 .expense-panel {
@@ -47,11 +53,21 @@ table {
   padding: 5px;
 }
 
+.not-sold {
+  color: red;
+  font-weight: bold;
+}
+
+.negative-profit {
+  color: red;
+  font-weight: bold;
+}
+
 button mat-icon {
   font-size: 20px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .button-group {
     flex-direction: column;
     gap: 10px;
@@ -60,5 +76,11 @@ button mat-icon {
   .mat-header-cell, .mat-cell {
     font-size: 14px;
     padding: 8px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
 }

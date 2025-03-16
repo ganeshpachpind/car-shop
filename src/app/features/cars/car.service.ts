@@ -7,10 +7,10 @@ import { Car , WorkshopExpense} from '../../models/car';
 })
 export class CarService {
   private cars: Car[] = [
-    { id: '1', carNumber: 'ABC123', carModel: 'Toyota Corolla', name: 'Corolla', purchaseDate: '2023-06-10', purchasePrice: 15000, workshopExpenses: [] },
-    { id: '2', carNumber: 'XYZ789', carModel: 'Honda Civic', name: 'Civic', purchaseDate: '2022-09-15', purchasePrice: 18000, workshopExpenses: [] },
-    { id: '3', carNumber: 'LMN456', carModel: 'Ford Mustang', name: 'Mustang', purchaseDate: '2021-12-05', purchasePrice: 35000, workshopExpenses: [] },
-    { id: '4', carNumber: 'JKL012', carModel: 'Tesla Model 3', name: 'Model 3', purchaseDate: '2024-01-20', purchasePrice: 45000, workshopExpenses: [] },
+    { id: '1', carNumber: 'ABC123', carModel: 'Toyota Corolla', name: 'Corolla', purchaseDate: '2023-06-10', purchasePrice: 15000, sellPrice:34567, workshopExpenses: [] },
+    { id: '2', carNumber: 'XYZ789', carModel: 'Honda Civic', name: 'Civic', purchaseDate: '2022-09-15', purchasePrice: 18000, sellPrice:378787, workshopExpenses: [] },
+    { id: '3', carNumber: 'LMN456', carModel: 'Ford Mustang', name: 'Mustang', purchaseDate: '2021-12-05', purchasePrice: 35000, sellPrice:500, workshopExpenses: [] },
+    { id: '4', carNumber: 'JKL012', carModel: 'Tesla Model 3', name: 'Model 3', purchaseDate: '2024-01-20', purchasePrice: 45000, sellPrice:50022, workshopExpenses: [] },
     { id: '5', carNumber: 'PQR678', carModel: 'Chevrolet Camaro', name: 'Camaro', purchaseDate: '2020-05-30', purchasePrice: 32000, workshopExpenses: [] }
   ];
 

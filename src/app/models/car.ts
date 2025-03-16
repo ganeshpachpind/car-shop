@@ -14,4 +14,5 @@ export interface WorkshopExpense {
     sellPrice?: number;
     workshopExpenses: { description: string; amount: number }[];
     profit?: number;
-  }
+    payments: { amount: number; date: string }[];  // ✅ Ensures payments exist
+}

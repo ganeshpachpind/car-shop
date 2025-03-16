@@ -39,6 +39,33 @@
       </mat-form-field>
     </div>
 
+    <!-- Payments Section -->
+    <mat-card class="payment-section">
+      <h3>Payments</h3>
+
+      <div *ngFor="let payment of car.payments; let i = index" class="payment-item">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Payment Date</mat-label>
+          <input matInput type="date" [(ngModel)]="payment.date" name="payment-date-{{i}}" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Amount</mat-label>
+          <input matInput type="number" [(ngModel)]="payment.amount" name="payment-amount-{{i}}" required>
+        </mat-form-field>
+
+        <button mat-mini-fab color="warn" (click)="removePayment(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <button mat-raised-button color="accent" type="button" class="add-payment-btn" (click)="addPayment()">➕ Add Payment</button>
+
+      <p class="total-paid">Total Paid: ${{ getTotalPayments() }} / ${{ car.purchasePrice }}</p>
+      <p class="overpaid-warning" *ngIf="getTotalPayments() > car.purchasePrice">⚠️ Payments exceed purchase price!</p>
+    </mat-card>
+    
+
     <!-- Workshop Expenses Section -->
     <mat-card class="expense-section">
       <h3>Workshop Expenses</h3>

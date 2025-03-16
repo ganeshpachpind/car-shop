@@ -34,6 +34,7 @@ export class CarFormComponent {
     name: '',
     purchaseDate: new Date().toISOString().split('T')[0],
     purchasePrice: 0,
+    payments:[],
     workshopExpenses: [], // ✅ Ensure expenses are initialized
   };
 

@@ -36,12 +36,18 @@ export class EditCarComponent {
     const carId = this.route.snapshot.paramMap.get('id');
     this.carService.cars$.subscribe(cars => {
       this.car = cars.find(c => c.id === carId) || {} as Car;
+
       if (!this.car.workshopExpenses) {
         this.car.workshopExpenses = []; // ✅ Ensure expenses array is initialized
+      }
+
+      if (!this.car.payments) {
+        this.car.payments = []; // ✅ Ensure payments array is initialized
       }
     });
   }
 
+  // ✅ Add Workshop Expense
   addExpense() {
     this.car.workshopExpenses.push({ description: '', amount: 0 });
   }
@@ -50,7 +56,26 @@ export class EditCarComponent {
     this.car.workshopExpenses.splice(index, 1);
   }
 
+  // ✅ Add Payment (Ensures total payments do not exceed purchasePrice)
+  addPayment() {
+    if (this.getTotalPayments() >= this.car.purchasePrice) return;
+    this.car.payments.push({ amount: 0, date: '' });
+  }
+
+  removePayment(index: number) {
+    this.car.payments.splice(index, 1);
+  }
+
+  // ✅ Get Total Payments Sum
+  getTotalPayments(): number {
+    return this.car.payments.reduce((sum, payment) => sum + (payment.amount || 0), 0);
+  }
+
   saveCar() {
+    if (this.getTotalPayments() > this.car.purchasePrice) {
+      alert("⚠️ Payments exceed the purchase price! Please adjust the payments.");
+      return;
+    }
     this.carService.updateCar(this.car);
     this.router.navigate(['/']);
   }

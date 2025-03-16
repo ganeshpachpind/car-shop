@@ -7,11 +7,44 @@ import { Car , WorkshopExpense} from '../../models/car';
 })
 export class CarService {
   private cars: Car[] = [
-    { id: '1', carNumber: 'ABC123', carModel: 'Toyota Corolla', name: 'Corolla', purchaseDate: '2023-06-10', purchasePrice: 15000, sellPrice:34567, workshopExpenses: [] },
-    { id: '2', carNumber: 'XYZ789', carModel: 'Honda Civic', name: 'Civic', purchaseDate: '2022-09-15', purchasePrice: 18000, sellPrice:378787, workshopExpenses: [] },
-    { id: '3', carNumber: 'LMN456', carModel: 'Ford Mustang', name: 'Mustang', purchaseDate: '2021-12-05', purchasePrice: 35000, sellPrice:500, workshopExpenses: [] },
-    { id: '4', carNumber: 'JKL012', carModel: 'Tesla Model 3', name: 'Model 3', purchaseDate: '2024-01-20', purchasePrice: 45000, sellPrice:50022, workshopExpenses: [] },
-    { id: '5', carNumber: 'PQR678', carModel: 'Chevrolet Camaro', name: 'Camaro', purchaseDate: '2020-05-30', purchasePrice: 32000, workshopExpenses: [] }
+    {
+      id: '1',
+      carNumber: 'MH12AB1234',
+      carModel: 'Toyota Corolla',
+      name: 'Corolla',
+      purchaseDate: '2024-03-10',
+      purchasePrice: 15000,
+      sellDate: '2024-05-20',
+      sellPrice: 18000,
+      workshopExpenses: [
+        { description: 'Oil Change', amount: 100 },
+        { description: 'Brake Pad Replacement', amount: 250 }
+      ],
+      profit: 2900, // Example profit calculation
+      payments: [
+        { amount: 5000, date: '2024-03-12' },
+        { amount: 4000, date: '2024-03-15' },
+        { amount: 6000, date: '2024-03-18' } // Total Paid: 15,000 (Full Purchase Price Paid)
+      ]
+    },
+    {
+      id: '2',
+      carNumber: 'DL5CA5678',
+      carModel: 'Honda Civic',
+      name: 'Civic',
+      purchaseDate: '2024-04-01',
+      purchasePrice: 20000,
+      sellDate: undefined, // Not sold yet
+      sellPrice: undefined,
+      workshopExpenses: [
+        { description: 'Tire Replacement', amount: 300 }
+      ],
+      profit: undefined, // Not sold yet, so no profit
+      payments: [
+        { amount: 7000, date: '2024-04-05' },
+        { amount: 5000, date: '2024-04-10' } // Total Paid: 12,000 (Still Needs 8,000)
+      ]
+    }
   ];
 
   private carsSubject = new BehaviorSubject<Car[]>(this.cars);

@@ -1,4 +1,4 @@
-// 🔹 Make form container responsive
+// 🔹 Style the form container
 .form-container {
   max-width: 600px;
   margin: auto;
@@ -20,8 +20,8 @@
   gap: 16px;
 }
 
-// 🔹 Style expense section
-.expense-section {
+// 🔹 Style payment section
+.payment-section {
   background: #f9f9f9;
   padding: 15px;
   margin-top: 20px;
@@ -29,12 +29,24 @@
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-// 🔹 Ensure expenses stack vertically
-.expense-item {
+// 🔹 Ensure payments stack vertically
+.payment-item {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 10px;
+}
+
+// 🔹 Total paid styling
+.total-paid {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+// 🔹 Overpayment warning
+.overpaid-warning {
+  color: red;
+  font-weight: bold;
 }
 
 // 🔹 Style buttons to stack properly on mobile
@@ -47,14 +59,14 @@
 
 // 🔹 Improve button styling
 .save-button {
-  background: #28a745; // ✅ Green save button
+  background: #28a745;
   color: white;
   font-weight: bold;
   width: 100%;
 }
 
 .cancel-button {
-  background: #dc3545; // ✅ Red cancel button
+  background: #dc3545;
   color: white;
   font-weight: bold;
   width: 100%;
@@ -67,7 +79,7 @@
     padding: 15px;
   }
 
-  .expense-section {
+  .payment-section {
     padding: 10px;
   }
 

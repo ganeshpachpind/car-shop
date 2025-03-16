@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { CarService } from '../car.service';
 import { Car } from '../../../models/car';
+import { CarRowComponent } from '../car-row/car-row.component';
 
 // ✅ Import Material Components
 import { MatTableModule } from '@angular/material/table';
@@ -21,7 +22,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    CarRowComponent
   ]
 })
 export class CarListComponent {

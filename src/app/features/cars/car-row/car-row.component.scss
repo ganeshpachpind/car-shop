@@ -1,0 +1,121 @@
+.car-card {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .car-card:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+  }
+  
+  /* 🔹 Highlight the first row with a different color */
+  .car-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .car-header h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* 🔹 Make actions (Edit/Delete) more distinct */
+  .car-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .car-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 10px;
+    background: #f8f9fa;
+    padding: 12px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #222;
+  }
+  
+  /* 🔹 Different color for "Not Sold" */
+  .not-sold {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* 🔹 Highlight negative profit */
+  .negative-profit {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* 🔹 Styling for workshop expenses */
+  .expense-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .expense-table th {
+    background: #f2f2f2;
+    padding: 6px;
+    text-align: left;
+  }
+  
+  .expense-table td {
+    padding: 6px;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .car-card {
+      padding: 10px;
+    }
+  
+    .car-header h3 {
+      font-size: 16px;
+    }
+  
+    .car-info {
+      grid-template-columns: 1fr; /* Stack items in a single column for small screens */
+    }
+  
+    .label {
+      font-size: 13px;
+    }
+  
+    .value {
+      font-size: 14px;
+    }
+  }
+  

@@ -44,10 +44,18 @@
 
         <div *ngFor="let payment of car.payments; let i = index" class="payment-item">
           <div *ngIf="!payment.editing" class="payment-display">
-            <span class="label">Date:</span> <span>{{ payment.date }}</span>
-            <span class="label">Amount:</span> <span>${{ payment.amount }}</span>
-            <button mat-raised-button class="edit-button" (click)="editPayment(i)">✏️ Edit</button>
-            <button mat-raised-button class="delete-button" (click)="removePayment(i)">🗑️ Delete</button>
+            <div>
+              <div>
+                <span class="label">Date:</span> <span>{{ payment.date }}</span>
+              </div>
+              <div>
+               <span class="label">Amount:</span> <span>${{ payment.amount }}</span>
+              </div>
+            </div>
+            <div>
+              <button mat-raised-button class="edit-button" (click)="editPayment(i)">✏️ Edit</button>
+              <button mat-raised-button class="delete-button" (click)="removePayment(i)">🗑️ Delete</button>
+            </div>
           </div>
 
           <div *ngIf="payment.editing" class="payment-edit">

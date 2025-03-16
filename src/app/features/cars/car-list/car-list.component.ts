@@ -46,4 +46,9 @@ export class CarListComponent {
   deleteCar(id: string) {
     this.carService.deleteCar(id);
   }
+  
+  editCar(id: string) {
+    this.router.navigate([`/edit-car/${id}`]); // ✅ Navigates to the Edit Car page
+  }
+
 }

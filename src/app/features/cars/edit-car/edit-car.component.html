@@ -1,0 +1,71 @@
+<mat-card class="form-container">
+    <h2>Edit Car</h2>
+    <form (ngSubmit)="saveCar()">
+      
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Car Number</mat-label>
+        <input matInput type="text" [(ngModel)]="car.carNumber" name="carNumber" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Car Model</mat-label>
+        <input matInput type="text" [(ngModel)]="car.carModel" name="carModel" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Car Name</mat-label>
+        <input matInput type="text" [(ngModel)]="car.name" name="name" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Purchase Date</mat-label>
+        <input matInput type="date" [(ngModel)]="car.purchaseDate" name="purchaseDate" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Purchase Price</mat-label>
+        <input matInput type="number" [(ngModel)]="car.purchasePrice" name="purchasePrice" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Sell Date (Optional)</mat-label>
+        <input matInput type="date" [(ngModel)]="car.sellDate" name="sellDate">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Sell Price (Optional)</mat-label>
+        <input matInput type="number" [(ngModel)]="car.sellPrice" name="sellPrice">
+      </mat-form-field>
+
+       <!-- Workshop Expenses Section -->
+       <mat-card class="expense-section">
+        <h3>Workshop Expenses</h3>
+        
+        <div *ngFor="let expense of car.workshopExpenses; let i = index" class="expense-item">
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Expense Description</mat-label>
+            <input matInput type="text" [(ngModel)]="expense.description" name="description-{{i}}" required>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Amount</mat-label>
+            <input matInput type="number" [(ngModel)]="expense.amount" name="amount-{{i}}" required>
+          </mat-form-field>
+  
+          <button mat-mini-fab color="warn" (click)="removeExpense(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+  
+        <button mat-raised-button color="accent" type="button" class="add-expense-btn" (click)="addExpense()">➕ Add Expense</button>
+      </mat-card>
+  
+  
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit">✅ Save Changes</button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">❌ Cancel</button>
+      </div>
+    </form>
+  </mat-card>
+  

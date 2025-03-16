@@ -24,6 +24,29 @@ table {
   padding: 12px;
 }
 
+.expense-panel {
+  background: #f9f9f9;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.expense-table {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.expense-table th {
+  background: #eee;
+  padding: 5px;
+  text-align: left;
+}
+
+.expense-table td {
+  padding: 5px;
+}
+
 button mat-icon {
   font-size: 20px;
 }

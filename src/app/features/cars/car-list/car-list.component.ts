@@ -8,6 +8,7 @@ import { Car } from '../../../models/car';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-car-list',
@@ -19,12 +20,21 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     MatTableModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatExpansionModule
   ]
 })
 export class CarListComponent {
   cars: Car[] = [];
-  displayedColumns: string[] = ['carNumber', 'carModel', 'name', 'purchaseDate', 'purchasePrice', 'actions'];
+  displayedColumns: string[] = [
+    'carNumber',
+    'carModel',
+    'name',
+    'purchaseDate',
+    'purchasePrice',
+    'expenses',  // ✅ Ensure this is here for collapsible expenses
+    'actions'
+  ];
 
   constructor(private carService: CarService, private router: Router) {}
 
